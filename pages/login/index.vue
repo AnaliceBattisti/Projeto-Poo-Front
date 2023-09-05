@@ -9,12 +9,12 @@
               <v-form @submit.prevent="login" > 
                 <v-text-field v-model="username" label="Usuário"></v-text-field>
                 <v-text-field v-model="password" label="Senha" type="password"></v-text-field>
-                <v-btn type="submit" color="indigo-darken-4" class="login-button">Entrar</v-btn>
+                <v-btn type="submit"  class="login-button">Entrar</v-btn>
               </v-form>
 
               <div class="signup-link">
                 <span>Não é cadastrado? </span>
-                <nuxt-link to="/cadastro">Cadastre-se aqui</nuxt-link>
+                <nuxt-link to="/usuario/cadastrousuario" class="cadastro_button">Cadastre-se aqui</nuxt-link>
               </div>
             </v-card-text>
           </v-card>
@@ -46,10 +46,9 @@ export default {
 <style scoped>
 
 .teste{
-  background-color: #283593;
 }
 .login-container {
-  background-color: #283593; /* indigo-darken-4 */
+   /* indigo-darken-4 */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -58,21 +57,28 @@ export default {
   margin: 0;
 }
 
-
+.elevation-12{
+  background-color: #283593;
+  color: white;
+}
 
 .headline {
   text-align: center;
-  color: #B71C1C;
+  color: white;
 }
 
+.cadastro_button {
+  color: yellow;
+}
 
 .login-button {
-  width: 30%;
+  color: "indigo-darken-4";
+  background-color: yellow;
 }
 
 .signup-link {
   text-align: center;
   margin-top: 1rem;
-  color:#B71C1C;
+  color: white;
 }
 </style>
