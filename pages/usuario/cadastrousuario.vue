@@ -5,10 +5,14 @@
       <v-container class="box-identificacao">
         <h1>Identificação</h1>
         <v-text-field :counter="10" label="Nome completo" class="input"></v-text-field>
-        <v-text-field :counter="7" label="Telefone" class="input"></v-text-field>
-        <v-text-field label="E-mail" class="input"></v-text-field>
-        <v-text-field :counter="11" label="CPF" class="input"></v-text-field>
-        <v-text-field :counter="9" label="RG" class="input"></v-text-field>
+        <div class="input_box">
+          <v-text-field :counter="7" label="Telefone" class="input"></v-text-field>
+          <v-text-field label="E-mail" class="input"></v-text-field>
+        </div>
+        <div class="input_box">
+          <v-text-field :counter="11" label="CPF" class="input"></v-text-field>
+          <v-text-field :counter="9" label="RG" class="input"></v-text-field>
+        </div>
       </v-container>
 
       <v-container class="box-endereco">      
@@ -22,7 +26,7 @@
       </v-container>
 
       <v-container class="box-botoes">
-        <v-btn class="me-4"> Voltar </v-btn>
+        <v-btn class="me-4"> <nuxt-link to="/index" class="voltar_button">Voltar</nuxt-link> </v-btn>
         <v-btn class="me-4" type="submit"> Cadastrar </v-btn>
       </v-container>
 
@@ -76,6 +80,17 @@
 
 .me-4 {
   background-color: yellow;
+}
+
+.input_box {
+  display: flex;
+  justify-items: space-evenly;
+  gap: 16px;
+}
+
+.voltar_button {
+  text-decoration: none;
+  color: black;
 }
 
 </style>
