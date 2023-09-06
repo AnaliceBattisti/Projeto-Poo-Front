@@ -10,7 +10,7 @@ class SessaoService {
   }
 
   create(sessao, titulo) {
-    return http.post(`/sessao/${titulo}`, sessao);
+    return http.post(`/sessao/${titulo}`);
   }
 
   getByFilme(titulo) {
