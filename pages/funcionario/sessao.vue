@@ -46,6 +46,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+    layout: 'funcionario'
+})
 import { onMounted, ref } from "vue";
 import SessaoService from "@/services/SessaoService";
 import FilmeService from "@/services/FilmeService";
