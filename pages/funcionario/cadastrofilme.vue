@@ -84,6 +84,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+    layout: 'funcionario'
+})
 import FilmeService from "@/services/FilmeService";
 
 var filme = reactive ({
