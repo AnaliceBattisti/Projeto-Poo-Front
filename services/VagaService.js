@@ -9,6 +9,10 @@ class VagaService {
     return http.post("/vaga/front");
   }
 
+  getBySessao(id) {
+    return http.get("/vaga"+id);
+  }
+
 }
 
-export default new SessaoService();
+export default new VagaService();
