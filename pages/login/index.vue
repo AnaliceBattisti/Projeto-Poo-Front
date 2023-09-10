@@ -9,7 +9,7 @@
               <v-form @submit.prevent="login" > 
                 <v-text-field v-model="username" label="Usuário"></v-text-field>
                 <v-text-field v-model="password" label="Senha" type="password"></v-text-field>
-                <v-btn type="submit"  class="login-button">Entrar</v-btn>
+                <v-btn type="submit"  class="login-button"> <nuxt-link to= "/usuario">Entrar</nuxt-link></v-btn>
               </v-form>
 
               <div class="signup-link">
