@@ -20,7 +20,6 @@
             item-value="id" 
             label="Escolha uma sessão" 
             class="select_sessao" 
-            @change="listarVagas($event)"
            >
         </v-select>
 
@@ -39,7 +38,30 @@
 
         <div class="vagas_boxA">
             <h5>A</h5>
-            <input type="checkbox" v-model="vaga" value="id"/>
+            <div v-for="vaga in vagas" :key="vaga.id" >
+                <input 
+                type="checkbox" 
+                v-model="ingresso.vaga" 
+                :disabled="vaga.ocupado"
+                :checked="vaga.ocupado"
+                value="vaga.id"
+                />
+                <input 
+                type="checkbox" 
+                v-model="ingresso.vaga" 
+                :disabled="vaga.ocupado"
+                :checked="vaga.ocupado"
+                value="vaga.id"
+                />
+                <input 
+                type="checkbox" 
+                v-model="ingresso.vaga" 
+                :disabled="vaga.ocupado"
+                :checked="vaga.ocupado"
+                value="vaga.id"
+                />
+            </div>
+            <!-- <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
@@ -76,7 +98,8 @@
         <div class="vagas_boxD">
             <h5>D</h5>
             <input type="checkbox" v-model="vaga" value="id"/>
-            <input type="checkbox" v-model="vaga" value="id"/>
+            <input type="checkbox" <v-mod></v-mod>
+            <-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------2></-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------2>el="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
@@ -94,8 +117,8 @@
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
             <input type="checkbox" v-model="vaga" value="id"/>
-            <input type="checkbox" v-model="vaga" value="id"/>
-        </div>
+            <input type="checkbox" v-model="vaga" value="id"/>-->
+        </div> 
 
        
         <nuxt-link to="/usuario/confirmacaocompra"  class="button_comprar">
@@ -189,7 +212,7 @@ var ingresso = reactive ({
 
 function ComprarIngresso() {
 console.log(ingresso);
-IngressoService.comprarIngresso()
+IngressoService.comprarIngresso(data)
     .then((response) => {
         console.log(response.status);
     })
