@@ -80,6 +80,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-snackbar v-model="successMessage" :timeout="5000" color="success">
+      {{ successMessage }}
+    </v-snackbar>
   </v-form>
 </template>
 
@@ -89,10 +92,13 @@ definePageMeta({
 })
 import FilmeService from "@/services/FilmeService";
 
-var filme = reactive ({
+var lastUsedId = 1;
+
+var filme = reactive({
+  id: "", 
   titulo: "",
   duracao: "",
-  faixaEtaria:"" ,
+  faixaEtaria: "",
   genero: "",
   sinopse: "",
   diretor: "",
@@ -100,31 +106,34 @@ var filme = reactive ({
   capa: ""
 });
 
-function saveFilme (){
-console.log(filme);
-FilmeService.create(filme)
-  .then((response) => {
-    console.log(response.status);
-   
-  })
-  .catch((error) => {
-    console.error("Erro ao cadastrar filme:", error);
-  });
-};
+var successMessage = ref("");
+
+function saveFilme() {
+  filme.id = lastUsedId++;
+
+  console.log(filme);
+  FilmeService.create(filme)
+    .then((response) => {
+      if (response.status === 200) {
+        // Define a mensagem de sucesso
+        successMessage.value = "Filme cadastrado com sucesso!";
+      }
+    })
+    .catch((error) => {
+
+      console.error("Erro ao cadastrar filme:", error);
+    });
+}
 </script>
 
-  <styles>
-  
-  
-  </styles>
-  <style>
-    .test{
+<style>
+
+.test {
   background-color: #283593;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 1%;
-
+  
 }
 
-  </style>
-  
+</style>

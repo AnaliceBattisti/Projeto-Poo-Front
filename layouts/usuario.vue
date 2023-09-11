@@ -6,6 +6,9 @@
           <v-app-title class="text-decoration-underline">Drive-in</v-app-title>
         </v-container>
         <v-spacer></v-spacer>
+        <v-btn>
+        <NuxtLink to="/usuario" class="home_text">Home</NuxtLink>
+      </v-btn>
         <v-btn
       id="menu-activator"
       class="bg-indigo-darken-4" 
@@ -20,7 +23,7 @@
         <v-list-item
           
         >
-         <nuxt-link to="/meusIngresso">Meus Ingressos</nuxt-link>
+         <nuxt-link to="/meusIngresso"> Meus Ingressos</nuxt-link>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -40,8 +43,7 @@
   
   <style scoped>
     .menu{
-      box-sizing: border-box;
-      size: 20px;
+      
     }
   </style>
   

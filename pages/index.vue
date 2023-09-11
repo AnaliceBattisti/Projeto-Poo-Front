@@ -1,8 +1,9 @@
 <template>
   <v-main>
     <v-container fluid>
-      <h1 class="headline">Filmes</h1>
+      <h1 class="headline">Filmes em cartaz </h1>
       <lista-filmes></lista-filmes> 
+      
     </v-container>
   </v-main>
 </template>
@@ -10,10 +11,12 @@
 <script>
 import ListaFilmes from "@/components/ListaFilmes.vue";
 
+
 export default {
   name: "Home",
   components: {
     ListaFilmes,
+    
   },
 };
 </script>

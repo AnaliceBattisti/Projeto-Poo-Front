@@ -25,8 +25,7 @@
             :items="filmes.map(item => item.titulo)"
             label="Escolha o Filme"
             required
-            @change="filmeSelecionado"
-            v-model="filme"
+            v-model="sessao.filmes"
           ></v-select>
         </v-col>
       </v-row>
@@ -39,6 +38,9 @@
           >
             Cadastrar Sessão
           </v-btn>
+          <v-snackbar v-model="successMessage" :timeout="5000" color="success">
+      {{ successMessage }}
+    </v-snackbar>
         </v-col>
       </v-row>
     </v-container>
@@ -54,6 +56,7 @@ import SessaoService from "@/services/SessaoService";
 import FilmeService from "@/services/FilmeService";
 
 var filmes = ref([]);
+var successMessage = ref("");
 
 function listarFilmes() {
   FilmeService.list()
@@ -68,30 +71,39 @@ function listarFilmes() {
 onMounted(() => {
   listarFilmes();
 });
-var filme = ref([]);
 
 var sessao = reactive({
   horario: "",
   diaExibicao: " "
 });
 
-function filmeSelecionado() {
-  console.log("Filme selecionado:", filme);
-}
+
 
 function saveSessao() {
-  console.log("Valor de sessao.filme:", filme.value); 
-  console.log("Dados de sessao:", sessao);
-
-  SessaoService.create(sessao,filme.value)
-    .then((response) => {
-      console.log(response.status);
+  FilmeService.getid(sessao.filmes)
+    .then((FilmeId) => {
+      
+      
+      SessaoService.create(sessao, FilmeId)
+        .then((response) => {
+          if (response.status === 200) {
+        // Define a mensagem de sucesso
+        successMessage.value = "Filme cadastrado com sucesso!";
+      }
+        })
+        .catch((error) => {
+          console.error("Erro ao cadastrar sessão:", error);
+        });
+        
     })
     .catch((error) => {
-      console.error("Erro ao cadastrar sessão:", error);
+      console.error("Erro ao obter ID do filme:", error);
     });
 }
 </script>
+
+
+
 
 <style>
 .test {
