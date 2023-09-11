@@ -9,7 +9,8 @@
               <v-form @submit.prevent="login" > 
                 <v-text-field v-model="username" label="Usuário"></v-text-field>
                 <v-text-field v-model="password" label="Senha" type="password"></v-text-field>
-                <v-btn type="submit"  class="login-button"> <nuxt-link to= "/usuario">Entrar</nuxt-link></v-btn>
+                <v-btn type="submit" class="login-button" @click="login">Entrar</v-btn>
+
               </v-form>
 
               <div class="signup-link">
@@ -36,11 +37,19 @@ export default {
   },
   methods: {
     login() {
-      // Here you can add your authentication logic
+      //
       console.log("Login attempt:", this.username, this.password);
+      
+      if (this.username === "Vendas" && this.password === "Vendas") {
+        // Login bem-sucedido, redirecione para a página "/funcionario"
+        this.$router.push("/funcionario");
+      } else {
+        // Login falhou, exiba uma mensagem de erro
+        this.error = "Credenciais inválidas. Por favor, tente novamente."
     }
   }
-};
+}
+}
 </script>
 
 <style scoped>

@@ -9,12 +9,12 @@ class SessaoService {
     return http.get("/sessao");
   }
 
-  create(sessao, titulo) {
-    return http.post(`/sessao/${titulo}`);
+  create(sessao, id) {
+    return http.post(`/savesessao/${id}`, sessao);
   }
 
-  getByFilme(titulo) {
-    return http.get(`/sessao/${titulo}`);
+  listByFilme(idFilme) {
+    return http.get(`/sessao/filme/${idFilme}`);
   }
 
   getByHorarioAndData(horario, diaExibicao) {

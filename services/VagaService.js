@@ -1,18 +1,25 @@
 import http from "@/common/http";
 
 class VagaService {
-    create() {
+  createVagaNormal() {
     return http.post("/vaga/normal");
   }
 
-  create() {
+  createVagaFront() {
     return http.post("/vaga/front");
   }
 
-  getBySessao(id) {
-    return http.get("/vaga"+id);
+  getVagaById(id) {
+    return http.get(`/vaga/${id}`);
   }
 
+  listVagas() {
+    return http.get("/vaga");
+  }
+
+  listVagasBySessao(idSessao) {
+    return http.get(`/vaga/sessao/${idSessao}`);
+  }
 }
 
 export default new VagaService();

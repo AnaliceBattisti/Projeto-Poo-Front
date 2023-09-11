@@ -6,7 +6,10 @@
           <v-app-title class="text-decoration-underline">Drive-in</v-app-title>
         </v-container>
         <v-spacer></v-spacer>
-        <v-btn
+        <v-btn>
+        <NuxtLink to="/funcionario" class="home_text">Home</NuxtLink>
+      </v-btn>
+         <v-btn
       id="menu-activator"
       class="bg-indigo-darken-4" 
       color="yellow"
@@ -17,11 +20,8 @@
 
     <v-menu activator="#menu-activator">
       <v-list class="menu">
-        <v-list-item
-          
-        >
+        <v-list-item>
          <nuxt-link to="/funcionario/Sessao"> Cadastrar Sessao</nuxt-link>
-         
         </v-list-item>
         <v-list-item>
         <nuxt-link to="/funcionario/cadastrofilme"> Cadastrar Filme</nuxt-link>     
@@ -43,7 +43,8 @@
   </script>
   
   <style scoped>
-    .menu{
+    .home-text{
+      color: indigo-darken-4;
       
     }
   </style>

@@ -12,16 +12,15 @@
             class="select_filme" >
         </v-select>
 
-        <v-select 
-            title="Sessão"
-            v-model="ingresso.sessao" 
-            :items="sessoes" 
-            item-title="dia" 
-            item-value="id" 
-            label="Escolha uma sessão" 
-            class="select_sessao" 
-           >
+        <v-select
+        title="Sessão"
+        v-model="ingresso.sessao"
+        :items="sessoesComDataEHora"
+        label="Escolha uma sessão"
+        class="select_sessao"
+        @change="listarVagas($event)">
         </v-select>
+   
 
         <h3>Escolha uma vaga:</h3>
 
@@ -133,74 +132,59 @@
 
 <script setup>
 import FilmeService from "@/services/FilmeService";
-var filmes = ref([
-{
-	"titulo":"barbie",
-	"duracao":120,
-	"faixaEtaria":12,
-	"sinopse":"texto",
-	"diretor":"joaquim",
-	"capa":"img",
-	"protagonistas":"aveteir",
-	"genero":"disney"
-}
-]);
-
-// function listarFilmes() {
-//     FilmeService.list()
-//        .then ((response) => {
-//            filmes.value = response.data;
-//        })
-//        .catch((error) => {
-//            console.error("Erro ao listar filmes;", error)
-//        })
-    
-// }
-// onMounted(
-//     () => {listarFilmes();}
-// )
-
 import SessaoService from "@/services/SessaoService";
-var sessoes = ref([
-{
-	"horario": 20,
-	"dia": "27/07"
-}
+var filmes = ref([
 ]);
 
-// function listarSessoes() {
-//     SessaoService.list()
-//         .then ((response) => {
-//             sessoes.value = response.data;
-//         })
-//         .catch((error) => {
-//             console.error("Erro ao listar sessoes;", error)
-//         })
-// }
-// onMounted(
-//     () => {listarSessoes();}
-// )
+ function listarFilmes() {
+     FilmeService.list()
+        .then ((response) => {
+            filmes.value = response.data;
+        })
+        .catch((error) => {
+            console.error("Erro ao listar filmes;", error)
+        })
+    
+ }
+ onMounted(
+     () => {listarFilmes();}
+ )
 
+
+var sessoes = ref([
+
+]);
+
+function listarSessoes() {
+     SessaoService.listByFilme(ingresso.filme.id)
+         .then ((response) => {
+             sessoes.value = response.data;
+         })
+         .catch((error) => {
+             console.error("Erro ao listar sessoes;", error)
+         })
+ }
+
+
+const sessoesComDataEHora = computed(() => {
+  // Combina a data e o horário separados por um espaço
+  return sessoes.value.map((sessao) => `${sessao.diaExibicao} ${sessao.horario}`);
+});
+ 
 import VagaService from "@/services/VagaService";
 var vagas = ref([
-{
-	"coluna": "1",
-	"linha": 2,
-	"ocupado": "true",
-	"valor": 30
-}
 ]);
 
-// function listarVagas(event) {
-//     let id = event.target.value
-//     VagaService.getBySessao(id)
-//         .then ((response) => {
-//             vagas.value = response.data;
-//         })
-//         .catch((error) => {
-//             console.error("Erro ao listar vagas;", error)
-//         })
-// }
+function listarVagas(event) {
+     let id = event.target.value
+     VagaService.getBySessao(id)
+         .then ((response) => {
+             vagas.value = response.data;
+         })
+         .catch((error) => {
+             console.error("Erro ao listar vagas;", error)
+         })
+}
 
 import IngressoService from "@/services/IngressoService";
 
