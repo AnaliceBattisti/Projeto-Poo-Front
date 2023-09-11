@@ -12,27 +12,15 @@
             class="select_filme" >
         </v-select>
 
-<<<<<<< HEAD
         <v-select
         title="Sessão"
         v-model="ingresso.sessao"
         :items="sessoesComDataEHora"
         label="Escolha uma sessão"
         class="select_sessao"
-        @change="listarVagas($event)"
-      ></v-select>
-=======
-        <v-select 
-            title="Sessão"
-            v-model="ingresso.sessao" 
-            :items="sessoes" 
-            item-title="dia" 
-            item-value="id" 
-            label="Escolha uma sessão" 
-            class="select_sessao" 
-           >
+        @change="listarVagas($event)">
         </v-select>
->>>>>>> 205fe8535f14fecd8fa8737b333ca03bdb0078fd
+   
 
         <h3>Escolha uma vaga:</h3>
 
